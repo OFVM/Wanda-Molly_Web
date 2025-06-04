@@ -1,7 +1,25 @@
-h1{
-    color:bisque
+body {
+    background-color: #fcd8d8; /* Color rosa suave del fondo */
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    color: #d06464; /* Marrón del texto */
 }
 
-body {
-    background-color: green;
-} 
+.logo {
+    width: 200px;  /* Ajusta el tamaño según lo necesites */
+    height: auto;  /* Mantiene la proporción */
+    display: block; /* Centra la imagen */
+    margin: auto;   /* Asegura que esté en el centro */
+}
+
+
+header h1 {
+    font-size: 2em;
+    margin: 10px 0;
+    color: #d06464;
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 14px;
+}
