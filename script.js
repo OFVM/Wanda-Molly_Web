@@ -1,16 +1,31 @@
-// Función para agregar productos al carrito
-function agregarAlCarro(nombreProducto, precioProducto) {
-    // Obtener la lista del carrito y el total
-    const listaCarrito = document.getElementById('lista-carrito');
-    const totalElement = document.getElementById('total');
+const carrito = [];
 
-    // Crear un nuevo elemento para el producto
-    const item = document.createElement('li');
-    item.textContent = `${nombreProducto} - $${precioProducto} CLP`;
-    listaCarrito.appendChild(item);
+function agregarAlCarro(nombre, precio) {
+    
+    const productoExistente = carrito.find(item => item.nombre === nombre);
+    if (productoExistente) {
+        
+        productoExistente.cantidad++;
+        productoExistente.precioTotal += precio;
+    } else {
+        
+        carrito.push({ nombre, precioUnitario: precio, cantidad: 1, precioTotal: precio });
+    }
+    actualizarCarrito();
+}
 
-    // Actualizar el total
-    let totalActual = parseInt(totalElement.textContent.replace(/[^0-9]/g, ''));
-    totalActual += precioProducto;
-    totalElement.textContent = `Total: $${totalActual} CLP`;
+function actualizarCarrito() {
+    const lista = document.getElementById("lista-carrito");
+    const total = document.getElementById("total");
+    lista.innerHTML = ""; 
+    let suma = 0;
+
+    carrito.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nombre} - ${item.cantidad} unidad(es) - $${item.precioTotal.toLocaleString()} CLP`;
+        lista.appendChild(li);
+        suma += item.precioTotal;
+    });
+
+    total.textContent = `Total: $${suma.toLocaleString()} CLP`;
 }
